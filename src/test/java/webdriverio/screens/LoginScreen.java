@@ -22,14 +22,19 @@ public class LoginScreen extends BaseScreen {
     private WebElement submitLoginBtn;
     @AndroidFindBy(accessibility = "button-sign-up-container")
     private WebElement openSignUpFormBtn;
+    @AndroidFindBy(accessibility = "button-login-container")
+    private WebElement openLoginFormBtn;
     @AndroidFindBy(accessibility = "button-SIGN UP")
     private WebElement submitSignUpBtn;
     @AndroidFindBy(accessibility = "Forms")
     private WebElement formsBtn;
     @AndroidFindBy(id = "android:id/button1")
-    private WebElement successfullySignedUpBtn;
+    private WebElement okPopUpBtn;
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"You successfully signed up!\")")
     private WebElement successfullySignedUpTitle;
+
+    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"You are logged in!\")")
+    private WebElement successfullyLoginTitle;
 
     public boolean isLoginBtnDisplayed(){
         waitElementVisibility(submitLoginBtn);
@@ -41,19 +46,35 @@ public class LoginScreen extends BaseScreen {
         return successfullySignedUpTitle.isDisplayed();
     }
 
+    public boolean isLoginSuccessful(){
+        waitElementVisibility(successfullyLoginTitle);
+        return successfullyLoginTitle.isDisplayed();
+    }
+
+    public void clickOkPopUpbtn(){
+        waitElementVisibility(okPopUpBtn);
+        okPopUpBtn.click();
+    }
     public void fillSignUpInputs(String email,String password){
         openSignUpFormBtn.click();
         inputEmail.click();
-        inputEmail.sendKeys(cont + email);
         //cont helps to create unique emails for simulating different emails in order to execute the test multiple times
         cont += 1;
+        inputEmail.sendKeys(cont + email);
         inputPassword.click();
         inputPassword.sendKeys(password);
         inputRepeatPassword.click();
         inputRepeatPassword.sendKeys(password);
         submitSignUpBtn.click();
-        waitElementVisibility(successfullySignedUpBtn);
-        successfullySignedUpBtn.click();
+
+    }
+    public void fillLoginInputs(String email,String password){
+        openLoginFormBtn.click();
+        inputEmail.click();
+        inputEmail.sendKeys(cont + email);
+        inputPassword.click();
+        inputPassword.sendKeys(password);
+        submitLoginBtn.click();
     }
 
 

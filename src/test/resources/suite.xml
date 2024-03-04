@@ -8,6 +8,7 @@
         <classes>
             <class name="webdriverio.tests.MenuNavigationTest"></class>
             <class name="webdriverio.tests.SignUpTest"></class>
+            <class name="webdriverio.tests.LoginTest"></class>
         </classes>
     </test>
 </suite>

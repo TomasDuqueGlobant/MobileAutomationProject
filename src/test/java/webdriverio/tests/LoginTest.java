@@ -7,16 +7,18 @@ import webdriverio.screens.HomeScreen;
 import webdriverio.screens.LoginScreen;
 import webdriverio.utils.basetest.BaseTest;
 
-public class SignUpTest extends BaseTest {
+public class LoginTest extends BaseTest {
 
     @Test
     @Parameters({"email","password"})
-    public void successfullySignUpTest(String email, String password){
+    public void successfullyLogin(String email, String password){
         HomeScreen homeScreen = getHomeScreen();
 
         LoginScreen loginScreen = homeScreen.openLoginScreen();
         loginScreen.fillSignUpInputs(email,password);
-        Assert.assertTrue(loginScreen.isSignUpSuccessful());
+        loginScreen.clickOkPopUpbtn();
+        loginScreen.fillLoginInputs(email,password);
+        Assert.assertTrue(loginScreen.isLoginSuccessful());
         loginScreen.clickOkPopUpbtn();
 
     }
