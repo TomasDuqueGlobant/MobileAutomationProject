@@ -29,7 +29,7 @@ public class WebViewScreen extends BaseScreen {
         return getStartedBtn.isDisplayed();
     }
 
-    public LoginScreen openLogin(){
+    public LoginScreen openLoginScreen(){
         login.click();
         return new LoginScreen(super.getDriver());
     }

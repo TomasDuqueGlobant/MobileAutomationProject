@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="MobileAutomationSuite">
+<suite name="Mobile Automation Suite">
+    <parameter name="email" value="tomas.duque@globant.com"/>
+    <parameter name="password" value="LaMejorContraseña21"/>
+
     <test name="Mobile Test">
         <classes>
             <class name="webdriverio.tests.MenuNavigationTest"></class>
+            <class name="webdriverio.tests.SignUpTest"></class>
         </classes>
     </test>
 </suite>

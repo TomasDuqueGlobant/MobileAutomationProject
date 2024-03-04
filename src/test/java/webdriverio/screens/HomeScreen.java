@@ -14,9 +14,17 @@ public class HomeScreen extends BaseScreen {
     @AndroidFindBy(accessibility = "Webview")
     private WebElement webView;
 
-    public WebViewScreen openWebView(){
+    @AndroidFindBy(accessibility = "Login")
+    private WebElement loginBtn;
+
+    public WebViewScreen openWebViewScreen(){
         webView.click();
         return new WebViewScreen(super.getDriver());
+    }
+
+    public LoginScreen openLoginScreen(){
+        loginBtn.click();
+        return new LoginScreen(super.getDriver());
     }
 
 

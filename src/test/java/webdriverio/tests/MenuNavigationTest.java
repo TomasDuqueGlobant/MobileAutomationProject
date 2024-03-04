@@ -13,11 +13,11 @@ public class MenuNavigationTest extends BaseTest {
     public void tryMenuNavigation(){
         HomeScreen homescreen = getHomeScreen();
 
-        WebViewScreen webViewScreen = homescreen.openWebView();
+        WebViewScreen webViewScreen = homescreen.openWebViewScreen();
         webViewScreen.closeBanner();
         Assert.assertTrue(webViewScreen.isWebviewDisplayed());
 
-        LoginScreen loginScreen = webViewScreen.openLogin();
+        LoginScreen loginScreen = webViewScreen.openLoginScreen();
         Assert.assertTrue(loginScreen.isLoginBtnDisplayed());
 
         FormsScreen formsScreen = loginScreen.openFormsScreen();
