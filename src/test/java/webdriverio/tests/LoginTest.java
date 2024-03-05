@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
         LoginScreen loginScreen = homeScreen.openLoginScreen();
         loginScreen.fillLoginInputs(email,password);
         Assert.assertTrue(loginScreen.isLoginSuccessful());
-        loginScreen.clickOkPopUpbtn();
+        loginScreen.clickOkPopUpBtn();
 
     }
 }

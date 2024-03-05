@@ -51,16 +51,16 @@ public class LoginScreen extends BaseScreen {
         return successfullyLoginTitle.isDisplayed();
     }
 
-    public void clickOkPopUpbtn(){
+    public void clickOkPopUpBtn(){
         waitElementVisibility(okPopUpBtn);
         okPopUpBtn.click();
     }
     public void fillSignUpInputs(String email,String password){
         openSignUpFormBtn.click();
         inputEmail.click();
+        inputEmail.sendKeys(cont + email);
         //cont helps to create unique emails for simulating different emails in order to execute the test multiple times
         cont += 1;
-        inputEmail.sendKeys(cont + email);
         inputPassword.click();
         inputPassword.sendKeys(password);
         inputRepeatPassword.click();
@@ -71,7 +71,7 @@ public class LoginScreen extends BaseScreen {
     public void fillLoginInputs(String email,String password){
         openLoginFormBtn.click();
         inputEmail.click();
-        inputEmail.sendKeys(cont + email);
+        inputEmail.sendKeys( email);
         inputPassword.click();
         inputPassword.sendKeys(password);
         submitLoginBtn.click();
