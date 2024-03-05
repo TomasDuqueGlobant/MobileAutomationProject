@@ -29,8 +29,8 @@ public class SwipeScreen extends BaseScreen {
     private WebElement dragBtn;
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"FULLY OPEN SOURCE\")")
     private  WebElement firstCardTitle;
-    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"GREAT COMMUNITY\")")
-    private  WebElement secondCardTitle;
+    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"\uDB81\uDE11\")")
+    private  WebElement secondCardImage;
 
 
 
@@ -44,8 +44,8 @@ public class SwipeScreen extends BaseScreen {
         return firstCardTitle.isDisplayed();
     }
     public boolean isSecondCardDisplayed(){
-        waitElementVisibility(secondCardTitle);
-        return secondCardTitle.isDisplayed();
+        waitElementVisibility(secondCardImage);
+        return secondCardImage.isDisplayed();
     }
 
     public boolean isFirstCardNotDisplayed(){
@@ -57,8 +57,8 @@ public class SwipeScreen extends BaseScreen {
         }
     }    public boolean isSecondCardNotDisplayed(){
         try{
-            secondCardTitle.isDisplayed();
-            return !secondCardTitle.isDisplayed();
+            secondCardImage.isDisplayed();
+            return !secondCardImage.isDisplayed();
         }catch (NoSuchElementException e){
             return true;
         }
@@ -80,15 +80,6 @@ public class SwipeScreen extends BaseScreen {
         swipe((screenWidth * 3) / 4, screenHeight / 2, screenWidth / 4, screenHeight / 2);
     }
 
-    public void swipe(int startX, int startY, int endX, int endY) {
-        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-        Sequence swipe = new Sequence(finger, 1)
-                .addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY))
-                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), endX, endY))
-                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
-        driver.perform(Arrays.asList(swipe));
-    }
 
 }
