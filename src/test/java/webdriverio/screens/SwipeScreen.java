@@ -2,16 +2,12 @@ package webdriverio.screens;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
-import org.checkerframework.checker.units.qual.A;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.PointerInput;
-import org.openqa.selenium.interactions.Sequence;
+
 import webdriverio.utils.basescreen.BaseScreen;
 
-import java.time.Duration;
-import java.util.Arrays;
 
 public class SwipeScreen extends BaseScreen {
 
@@ -19,8 +15,12 @@ public class SwipeScreen extends BaseScreen {
         super(driver);
     }
 
-    private int screenHeight = driver.manage().window().getSize().getHeight();
-    private int screenWidth = driver.manage().window().getSize().getWidth();
+    protected Dimension screenSize = driver.manage().window().getSize();
+    protected int screenWidth = screenSize.getWidth();
+    protected int screenHeight = screenSize.getHeight();
+
+
+
 
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"Swipe horizontal\")")
     private WebElement swipeTitle;
@@ -29,8 +29,15 @@ public class SwipeScreen extends BaseScreen {
     private WebElement dragBtn;
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"FULLY OPEN SOURCE\")")
     private  WebElement firstCardTitle;
-    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"\uDB81\uDE11\")")
+    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"GREAT COMMUNITY\")")
     private  WebElement secondCardImage;
+    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"You found me!!!\")")
+    private  WebElement bottomPageText;
+    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"\uDB82\uDDBE\")")
+    private  WebElement lastCardImage;
+    @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"EXTENDABLE\")")
+    private  WebElement secondToLastCardTitle;
+
 
 
 
@@ -39,13 +46,19 @@ public class SwipeScreen extends BaseScreen {
         return swipeTitle.isDisplayed();
     }
 
-    public boolean isFirstCardDisplayed(){
-        waitElementVisibility(firstCardTitle);
-        return firstCardTitle.isDisplayed();
-    }
     public boolean isSecondCardDisplayed(){
         waitElementVisibility(secondCardImage);
         return secondCardImage.isDisplayed();
+    }
+
+    public boolean isLastCardDisplayed(){
+        waitElementVisibility(lastCardImage);
+        return lastCardImage.isDisplayed();
+    }
+
+    public boolean isBottomPageTextDisplayed(){
+        waitElementVisibility(bottomPageText);
+        return bottomPageText.isDisplayed();
     }
 
     public boolean isFirstCardNotDisplayed(){
@@ -55,12 +68,53 @@ public class SwipeScreen extends BaseScreen {
         }catch (NoSuchElementException e){
             return true;
         }
-    }    public boolean isSecondCardNotDisplayed(){
+    }
+
+    public boolean isSecondToLastCardNotDisplayed(){
         try{
-            secondCardImage.isDisplayed();
-            return !secondCardImage.isDisplayed();
+            secondToLastCardTitle.isDisplayed();
+            return !secondToLastCardTitle.isDisplayed();
+        }catch(NoSuchElementException e){
+            return true;
+        }
+    }
+
+    public boolean isFurtherRightCardNotDisplayed(){
+        try{
+            lastCardImage.isDisplayed();
+            return !lastCardImage.isDisplayed();
+        }catch (NoSuchElementException e ){
+            return true;
+        }
+    }
+    public boolean isBottomTextNotDisplayed(){
+        try{
+            bottomPageText.isDisplayed();
+            return !bottomPageText.isDisplayed();
         }catch (NoSuchElementException e){
             return true;
+        }
+    }
+
+    public void swipeRight() {
+        swipe((screenWidth * 3) / 4, screenHeight / 2, screenWidth / 4, screenHeight / 2);
+    }
+
+    public void swipeToBottom() {
+
+        int startX = screenWidth / 2;
+        int startY = (int) (screenHeight * 0.9);
+        int endY = (int) (screenHeight * 0.2);
+
+        swipe(startX, startY, startX, endY);
+
+        while(isBottomTextNotDisplayed()){
+            swipeToBottom();
+        }
+    }
+    public void swipeToFurtherRightCard(){
+        while(isFurtherRightCardNotDisplayed()){
+            swipeRight();
         }
     }
 
@@ -68,18 +122,6 @@ public class SwipeScreen extends BaseScreen {
         dragBtn.click();
         return new DragScreen(super.getDriver());
     }
-
-    public void swipeRight(){
-        swipe(screenWidth / 4, screenHeight / 2, (screenWidth * 3) / 4, screenHeight / 2);
-    }
-
-    public void swipeLeft() {
-        int screenHeight = driver.manage().window().getSize().getHeight();
-        int screenWidth = driver.manage().window().getSize().getWidth();
-
-        swipe((screenWidth * 3) / 4, screenHeight / 2, screenWidth / 4, screenHeight / 2);
-    }
-
 
 
 }

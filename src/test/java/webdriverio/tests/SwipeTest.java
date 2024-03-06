@@ -13,11 +13,13 @@ public class SwipeTest extends BaseTest {
         HomeScreen homeScreen = getHomeScreen();
 
         SwipeScreen swipeScreen = homeScreen.openSwipeScreen();
-        swipeScreen.swipeLeft();
-        Assert.assertTrue(swipeScreen.isSecondCardDisplayed());
-        Assert.assertTrue(swipeScreen.isFirstCardNotDisplayed());
         swipeScreen.swipeRight();
-        Assert.assertTrue(swipeScreen.isFirstCardDisplayed());
-        Assert.assertTrue(swipeScreen.isSecondCardNotDisplayed());
+        Assert.assertTrue(swipeScreen.isFirstCardNotDisplayed());
+        Assert.assertTrue(swipeScreen.isSecondCardDisplayed());
+        swipeScreen.swipeToFurtherRightCard();
+        Assert.assertTrue(swipeScreen.isLastCardDisplayed());
+        Assert.assertTrue(swipeScreen.isSecondToLastCardNotDisplayed());
+        swipeScreen.swipeToBottom();
+        Assert.assertTrue(swipeScreen.isBottomPageTextDisplayed());
     }
 }
