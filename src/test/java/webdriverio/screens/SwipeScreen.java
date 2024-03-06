@@ -30,7 +30,7 @@ public class SwipeScreen extends BaseScreen {
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"FULLY OPEN SOURCE\")")
     private  WebElement firstCardTitle;
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"GREAT COMMUNITY\")")
-    private  WebElement secondCardImage;
+    private  WebElement secondCardTitle;
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"You found me!!!\")")
     private  WebElement bottomPageText;
     @AndroidFindBy(uiAutomator = "UiSelector().textContains(\"\uDB82\uDDBE\")")
@@ -47,8 +47,8 @@ public class SwipeScreen extends BaseScreen {
     }
 
     public boolean isSecondCardDisplayed(){
-        waitElementVisibility(secondCardImage);
-        return secondCardImage.isDisplayed();
+        waitElementVisibility(secondCardTitle);
+        return secondCardTitle.isDisplayed();
     }
 
     public boolean isLastCardDisplayed(){
